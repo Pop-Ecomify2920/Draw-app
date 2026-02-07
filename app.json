@@ -16,10 +16,18 @@
     },
     "plugins": [
       "expo-router",
-      ["expo-build-properties", { "android": { "kotlinVersion": "1.9.24" } }]
+      ["expo-build-properties", { "android": { "kotlinVersion": "1.9.24" } }],
+      "plugins/withKotlinExt.js"
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "e56767cb-6d71-40fd-af5b-bb050a85bf90"
+      }
+    },
+    "owner": "luckydev050"
   }
 }
