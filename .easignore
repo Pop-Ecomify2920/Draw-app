@@ -1,0 +1,2 @@
+# Use npm (package-lock.json) instead of bun for EAS Build
+bun.lock
