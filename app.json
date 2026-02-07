@@ -1,0 +1,25 @@
+{
+  "expo": {
+    "name": "vibecode",
+    "slug": "vibecode",
+    "scheme": "vibecode",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "package": "com.vibecode.dailydollar",
+      "edgeToEdgeEnabled": true
+    },
+    "plugins": [
+      "expo-router",
+      ["expo-build-properties", { "android": { "kotlinVersion": "1.9.24" } }]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}

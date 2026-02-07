@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backend API Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #0A1628;
+            color: white;
+        }
+        .test-section {
+            background: #1E3A5F;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+        button {
+            background: #FFD700;
+            color: #0A1628;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 5px;
+        }
+        button:hover {
+            background: #FFA500;
+        }
+        .result {
+            background: #0A1628;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 12px;
+            overflow-x: auto;
+        }
+        .success {
+            color: #4CAF50;
+        }
+        .error {
+            color: #f44336;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            border: 1px solid #2E4A6F;
+            background: #0A1628;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎰 Daily Dollar Lotto - Backend API Test</h1>
+    
+    <div class="test-section">
+        <h2>1. Test Health Endpoint</h2>
+        <button onclick="testHealth()">Test /health</button>
+        <div id="health-result" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>2. Test Sign In</h2>
+        <input type="email" id="signin-email" placeholder="Email" value="luckydev050@gmail.com">
+        <input type="password" id="signin-password" placeholder="Password" value="Test12345678">
+        <button onclick="testSignIn()">Test Sign In</button>
+        <div id="signin-result" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>3. Test Sign Up</h2>
+        <input type="text" id="signup-username" placeholder="Username" value="testuser2">
+        <input type="email" id="signup-email" placeholder="Email" value="test2@example.com">
+        <input type="password" id="signup-password" placeholder="Password" value="Test12345678">
+        <button onclick="testSignUp()">Test Sign Up</button>
+        <div id="signup-result" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>4. Test Get Today's Draw</h2>
+        <button onclick="testGetDraw()">Test /api/draws/today</button>
+        <div id="draw-result" class="result"></div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:3000';
+
+        async function testHealth() {
+            const resultDiv = document.getElementById('health-result');
+            resultDiv.innerHTML = '⏳ Testing...';
+            
+            try {
+                const response = await fetch(`${API_URL}/health`);
+                const data = await response.json();
+                
+                if (response.ok) {
+                    resultDiv.innerHTML = `<span class="success">✅ SUCCESS</span><br><pre>${JSON.stringify(data, null, 2)}</pre>`;
+                } else {
+                    resultDiv.innerHTML = `<span class="error">❌ ERROR</span><br><pre>${JSON.stringify(data, null, 2)}</pre>`;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `<span class="error">❌ ERROR: ${error.message}</span><br>Make sure backend is running on port 3000`;
+            }
+        }
+
+        async function testSignIn() {
+            const resultDiv = document.getElementById('signin-result');
+            const email = document.getElementById('signin-email').value;
+            const password = document.getElementById('signin-password').value;
+            
+            resultDiv.innerHTML = '⏳ Signing in...';
+            
+            try {
+                const response = await fetch(`${API_URL}/api/auth/signin`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email, password }),
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    // Store token for future requests
+                    sessionStorage.setItem('accessToken', data.tokens.accessToken);
+                    resultDiv.innerHTML = `<span class="success">✅ SIGN IN SUCCESS</span><br><pre>${JSON.stringify(data, null, 2)}</pre>`;
+                } else {
+                    resultDiv.innerHTML = `<span class="error">❌ SIGN IN FAILED</span><br><pre>${JSON.stringify(data, null, 2)}</pre>`;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `<span class="error">❌ ERROR: ${error.message}</span>`;
+            }
+        }
+
+        async function testSignUp() {
+            const resultDiv = document.getElementById('signup-result');
+            const username = document.getElementById('signup-username').value;
+            const email = document.getElementById('signup-email').value;
+            const password = document.getElementById('signup-password').value;
+            
+            resultDiv.innerHTML = '⏳ Creating account...';
+            
+            try {
+                const response = await fetch(`${API_URL}/api/auth/signup`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ username, email, password }),
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    resultDiv.innerHTML = `<span class="success">✅ ACCOUNT CREATED</span><br><pre>${JSON.stringify(data, null, 2)}</pre>`;
+                } else {
+                    resultDiv.innerHTML = `<span class="error">❌ SIGN UP FAILED</span><br><pre>${JSON.stringify(data, null, 2)}</pre>`;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `<span class="error">❌ ERROR: ${error.message}</span>`;
+            }
+        }
+
+        async function testGetDraw() {
+            const resultDiv = document.getElementById('draw-result');
+            resultDiv.innerHTML = '⏳ Getting draw...';
+            
+            try {
+                const response = await fetch(`${API_URL}/api/draws/today`);
+                const data = await response.json();
+                
+                if (response.ok) {
+                    resultDiv.innerHTML = `<span class="success">✅ SUCCESS</span><br><pre>${JSON.stringify(data, null, 2)}</pre>`;
+                } else {
+                    resultDiv.innerHTML = `<span class="error">❌ ERROR</span><br><pre>${JSON.stringify(data, null, 2)}</pre>`;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `<span class="error">❌ ERROR: ${error.message}</span>`;
+            }
+        }
+
+        // Auto-test health on load
+        window.onload = () => {
+            testHealth();
+        };
+    </script>
+</body>
+</html>
