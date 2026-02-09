@@ -1,2 +1,5 @@
 # Use npm (package-lock.json) instead of bun for EAS Build
 bun.lock
+
+# Force EAS to run prebuild and generate fresh android/ (avoids manual Gradle/Kotlin config drift)
+android
