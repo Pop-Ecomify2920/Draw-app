@@ -198,9 +198,9 @@ export default function LobbyScreen() {
           className="flex-1"
           contentContainerStyle={{ paddingBottom: 32 }}
           showsVerticalScrollIndicator={false}
-          refreshControl={
-            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor="#FFD700" />
-          }
+            // refreshControl={
+              // <RefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor="#FFD700" />
+            // }
         >
           {/* Header */}
           <View className="px-6 pt-4 pb-2">

@@ -91,9 +91,6 @@ export default function AdminDashboardScreen() {
 
         <ScrollView
           className="flex-1 px-4 py-4"
-          refreshControl={
-            <RefreshControl refreshing={isRefetching} onRefresh={onRefresh} tintColor="#FFD700" />
-          }
         >
           {errorMsg ? (
             <View className="bg-red-500/20 rounded-xl p-4 mb-4 border border-red-500/40">

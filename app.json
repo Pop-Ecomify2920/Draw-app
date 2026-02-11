@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "vibecode",
-    "slug": "vibecode",
+    "name": "dailydollar",
+    "slug": "dailydollar",
     "scheme": "vibecode",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -20,7 +20,8 @@
         "expo-build-properties",
         {
           "android": {
-            "kotlinVersion": "2.0.21"
+            "kotlinVersion": "2.0.21",
+            "usesCleartextTraffic": true
           }
         }
       ],
@@ -35,9 +36,9 @@
     "extra": {
       "router": {},
       "eas": {
-        "projectId": "e56767cb-6d71-40fd-af5b-bb050a85bf90"
+        "projectId": "4f52c603-59cc-4e7c-a821-69ed78ce153b"
       }
     },
-    "owner": "luckydev050"
+    "owner": "gustaf2920s-organization"
   }
 }

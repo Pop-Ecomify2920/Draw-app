@@ -161,9 +161,9 @@ export default function AdminUserDetailScreen() {
 
         <ScrollView
           className="flex-1 px-4 py-4"
-          refreshControl={
-            <RefreshControl refreshing={isRefetching} onRefresh={refetch} tintColor="#FFD700" />
-          }
+          // refreshControl={
+          //   <RefreshControl refreshing={isRefetching} onRefresh={refetch} tintColor="#FFD700" />
+          // }
         >
           {/* User Info Card */}
           <View className="bg-[#1E3A5F]/60 rounded-xl p-4 border border-[#2E4A6F] mb-4">

@@ -106,9 +106,9 @@ export default function AdminUsersScreen() {
         {/* Content */}
         <ScrollView
           className="flex-1 px-4 py-4"
-          refreshControl={
-            <RefreshControl refreshing={isRefetching} onRefresh={onRefresh} tintColor="#FFD700" />
-          }
+          // refreshControl={
+          //   <RefreshControl refreshing={isRefetching} onRefresh={onRefresh} tintColor="#FFD700" />
+          // }
         >
           {isLoading ? (
             <View className="items-center justify-center py-10">

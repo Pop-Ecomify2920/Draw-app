@@ -26,7 +26,7 @@ dotenv.config();
 // Create Express app
 const app = express();
 const server = createServer(app);
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 const HOST = process.env.HOST || 'localhost';
 
 // Middleware
@@ -153,9 +153,9 @@ server.listen(PORT, HOST, () => {
 ║   🎰 Daily Dollar Lotto Backend Server                   ║
 ║                                                           ║
 ║   Status: Running                                         ║
-║   Port: ${PORT}                                        ║
-║   Host: ${HOST}                                    ║
-║   Environment: ${process.env.NODE_ENV || 'development'}                              ║
+║   Port: ${PORT}                                           ║
+║   Host: ${HOST}                                           ║
+║   Environment: ${process.env.NODE_ENV || 'development'}   ║
 ║   Database: PostgreSQL                                    ║
 ║   WebSocket: Enabled                                      ║
 ║                                                           ║

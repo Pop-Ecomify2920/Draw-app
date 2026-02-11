@@ -1,32 +1,34 @@
 {
-  "cli": {
-    "version": ">= 12.0.0",
-    "appVersionSource": "local"
-  },
-  "build": {
-    "development": {
-      "developmentClient": true,
-      "distribution": "internal"
+    "cli": {
+        "version": ">= 12.0.0",
+        "appVersionSource": "local"
     },
-    "preview": {
-      "distribution": "internal",
-      "env": {
-        "NPM_CONFIG_LEGACY_PEER_DEPS": "true"
-      },
-      "android": {
-        "buildType": "apk"
-      }
+    "build": {
+        "development": {
+            "developmentClient": true,
+            "distribution": "internal"
+        },
+        "preview": {
+            "distribution": "internal",
+            "env": {
+                "NPM_CONFIG_LEGACY_PEER_DEPS": "true",
+                "EXPO_PUBLIC_API_URL": "http://163.245.215.141:3001/api"
+            },
+            "android": {
+                "buildType": "apk"
+            }
+        },
+        "production": {
+            "env": {
+                "NPM_CONFIG_LEGACY_PEER_DEPS": "true",
+                "EXPO_PUBLIC_API_URL": "http://163.245.215.141:3001/api"
+            },
+            "android": {
+                "buildType": "app-bundle"
+            }
+        }
     },
-    "production": {
-      "env": {
-        "NPM_CONFIG_LEGACY_PEER_DEPS": "true"
-      },
-      "android": {
-        "buildType": "app-bundle"
-      }
+    "submit": {
+        "production": {}
     }
-  },
-  "submit": {
-    "production": {}
-  }
 }
